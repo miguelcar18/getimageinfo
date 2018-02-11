@@ -3,6 +3,23 @@ $(function () {
 		$(this).each (function() { this.reset(); });
 	}
 
+	toastr.options = {
+		closeButton: true,
+		debug: false,
+		newestOnTop: false,
+		progressBar: false,
+		positionClass: "toast-top-right",
+		preventDuplicates: true,
+		showDuration: "300",
+		hideDuration: "1000",
+		timeOut: "5000",
+		extendedTimeOut: "1000",
+		showEasing: "swing",
+		hideEasing: "linear",
+		showMethod: "fadeIn",
+		hideMethod: "fadeOut"
+	}
+
 	$('input#submit').on('click', function(e){
 		e.preventDefault();
 		$.ajax({
@@ -15,7 +32,11 @@ $(function () {
                 $('input#submit').attr('disabled', true);
             },
             success:function(respuesta){
-                alert("El ancho de la imagen es "+respuesta.ancho+" tamaño que la solicitada y el largo de la imagen es "+respuesta.alto+" tamaño a la solicitada.");
+            	if(respuesta.ancho == 640 && respuesta.alto == 640){
+            		toastr["success"]("El ancho de la imagen es "+respuesta.mensajeAncho+" tamaño que la solicitada y el largo de la imagen es "+respuesta.mensajeAlto+" tamaño a la solicitada.");
+            	} else {
+            		toastr["info"]("El ancho de la imagen es "+respuesta.mensajeAncho+" tamaño que la solicitada y el largo de la imagen es "+respuesta.mensajeAlto+" tamaño a la solicitada.");
+            	}
                 $('input#submit').attr('disabled', false);
             }
         })            

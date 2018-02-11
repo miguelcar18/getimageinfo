@@ -35,8 +35,10 @@ switch($imagen[1]){
 }
 
 $datos = array(
-	'estado' 	=> 'ok',
-	'ancho' 	=> $ancho, 
-	'alto' 		=> $alto
+	'estado' 			=> 'ok',
+	'mensajeAncho' 		=> $ancho, 
+	'mensajeAlto' 		=> $alto, 
+	'ancho' => $imagen[0],
+	'alto' => $imagen[1]
 );
 echo json_encode($datos, JSON_FORCE_OBJECT);
